@@ -1,0 +1,30 @@
+<template>
+    <lightning-card>
+        <div class="slds-var-m-around_large">
+            <lightning-input type="text" variant="standard" label="FirstName"
+            placeholder=" text Here ">
+              </lightning-input>
+
+             <lightning-input type="text" variant="standard" label="LastName"
+                 placeholder=" text Here ">
+         </lightning-input>
+            <lightning-input type="email" variant="standard" label="Email"
+             placeholder=" text Here ">
+
+                </lightning-input>
+                    <lightning-layout-item>
+                        <lightning-button variant="base" label="Previous" title="Primary action" icon-position="Left"
+                                        onclick={handlePrevClick} icon-name="utility:chevronleft"  class="slds-m-left_x-small">
+                                    </lightning-button>
+                                    &nbsp; &nbsp;
+                                    <lightning-button variant="brand" label="Next" title="Primary action" icon-position="right"
+                                        onclick={handleNextClick} icon-name="utility:chevronright" class="slds-m-left_x-small">
+                                    </lightning-button>
+                    </lightning-layout-item>
+                <lightning-layout>
+                    
+                </lightning-layout>
+        </div>
+        
+    </lightning-card>
+</template>

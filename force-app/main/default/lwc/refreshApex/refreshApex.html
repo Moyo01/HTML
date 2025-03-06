@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Delete Some Records">
+
+        <lightning-button variant="brand" label="Delete" title="Delete" onclick={handleDelete} 
+        class="slds-m-left_x-small"></lightning-button>
+
+        <div style="height: 300px;">
+            <lightning-datatable
+                key-field="Id"
+                data={accountList}
+                columns={cols}
+                max-row-selection="1"
+                onrowselection={handleSelection}>
+            </lightning-datatable>
+
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Account Lookup">
+        <!-- Pass objectApiName and fieldApiName for Account -->
+        <c-custom-lookup
+            object-api-name="Account"
+            field-api-name="Name"
+            icon-name="standard:account"
+            onselect={handleAccountSelect}>
+        </c-custom-lookup>
+    </lightning-card>
+
+    <lightning-card title="Case Lookup">
+        <!-- Pass objectApiName and fieldApiName for Case -->
+        <c-custom-lookup
+            object-api-name="Case"
+            field-api-name="CaseNumber"
+            icon-name="standard:case"
+            onselect={handleCaseSelect}>
+        </c-custom-lookup>
+    </lightning-card>
+</template>

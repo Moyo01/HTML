@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="LWC Map" variant="Narrow">
+       
+            <lightning-map if:true={mapMarkers}
+            markers-title="Account Records"
+             map-markers={mapMarkers}
+            zoom-level={zoomLevel}
+            show-footer="4"
+            >
+        </lightning-map>
+        
+        
+        <div slot="footer">
+            <lightning-badge label="Google Map"></lightning-badge>
+        </div>
+    </lightning-card>
+</template>

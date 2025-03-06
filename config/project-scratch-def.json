@@ -1,0 +1,35 @@
+{
+  "orgName": "udemyLearning",
+  "edition": "Enterprise",
+  "hasSampleData": true,
+  "username": "owolabimoyoadola@org2",
+  "features": [
+    "EnableSetPasswordInApi",
+    "MultiCurrency",
+    "ContactsToMultipleAccounts",
+    "CascadeDelete",
+    "Communities",
+    "PersonAccounts",
+    "StateAndCountryPicklist",
+    "Entitlements",
+    "LiveAgent"  
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true,
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "omniChannelSettings": {
+      "enableOmniChannel": true
+    }, 
+    "caseSettings": {
+      "systemUserEmail":"owolabimoyoadola@gmail.com"
+    },
+    "quoteSettings": {
+      
+    }
+  }
+}

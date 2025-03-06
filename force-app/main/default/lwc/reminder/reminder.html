@@ -1,0 +1,97 @@
+<template>
+    <lightning-card title="Reminder" icon-name="standard:task">
+
+        <lightning-button variant="brand" label="Manage Reminder" title="Manage Reminder" slot="actions" onclick={handleClick} ></lightning-button>
+        <div class="slds-grid slds-wrap">
+            <template for:each={toDoList} for:item="todo" for:index="index" lwc:if={toDoList}>
+                <!--- Main container-->
+
+                <div key={todo.Id} class="slds-col slds-size_1-of-3">
+                    <div class="parent-Container">
+                        <div class="heading-Container" style={todo.headingStyle}>
+                            {todo.Subject}
+                        </div>
+                        <div class="text-Container  slds-p-top_x-large">
+                            <p style={todo.headingStyle} ><strong> Due Date </strong> {todo.ActivityDate} </p>
+                            <p><strong> Description </strong> {todo.Description} </p>
+                        </div>
+                        <!---foot note inside the main container-->
+                        <div class="Buttom-Container">
+                            <lightning-icon data-record-id={todo.Id} icon-name="action:preview" size="xx-small" onclick={handleRecordPage}></lightning-icon>
+                            &nbsp;
+                            <lightning-icon data-record-id={todo.Id}  icon-name="action:edit" size="xx-small" onclick={handleRecordEditPage}></lightning-icon>
+                        </div>
+                    </div>
+                </div>
+            </template> 
+        </div>
+    </lightning-card>
+
+    <div modal-class if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close">
+            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+            </svg>
+            <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">Manage Reminder</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-create-task-component onsuccess={handleSuccess}></c-create-task-component>
+            </div>
+            <div class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCancel}>Cancel</button>
+            
+            </div>
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+
+    <div modal-class if:true={selectedRecord}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-02" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close">
+                <lightning-button-icon icon-name="utility:close" variant="base" alternative-text="Close" class="slds-m-left_xx-small" title="Close" onclick={handleCancel} ></lightning-button-icon>
+            </button>
+            <div class="slds-modal__header">
+            <h1 id="modal-heading-02" class="slds-modal__title slds-hyphenate" tabindex="-1">View Reminder</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                   <c-view-task record={selectedRecord}></c-view-task>
+            </div>
+            <div class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCancel}>Cancel</button>
+            
+            </div>
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+
+   <!---Edit Modal-->
+    <div modal-class if:true={editModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close">
+                <lightning-button-icon icon-name="utility:close" variant="base" alternative-text="Close" class="slds-m-left_xx-small" title="Close" onclick={handleCancel} ></lightning-button-icon>
+            </button>
+            <div class="slds-modal__header">
+            <h1 id="modal-heading-03" class="slds-modal__title slds-hyphenate" tabindex="-1">Edit Reminder</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+                    <c-create-task-component onsuccess={handleSuccess} record-id={selectedEditRecord.Id} record-to-create={selectedEditRecord} lwc:if={selectedEditRecord}></c-create-task-component>
+            </div>
+            <div class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCancel}>Cancel</button>
+            
+            </div>
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+</template>
+

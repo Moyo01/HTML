@@ -1,0 +1,13 @@
+<template>
+    <div class="slds-p-left_small slds-p-right_medium">
+        <c-picklist-component object-api-name="Account" field-api-name="Industry" label="Industry" -place-holder="Pick the Industry" onchange={handleChange}></c-picklist-component>
+    </div>
+
+    <div class="slds-p-left_small slds-p-right_medium">
+        <c-picklist-component object-api-name="Account" field-api-name="AccountSource" label="Source" -place-holder="Pick the Source" onchange={handleChange}></c-picklist-component>
+    </div>
+
+    <div class="slds-p-left_small slds-p-right_medium">
+        <c-picklist-component record-type-id="012ak000005bloIAAQ" object-api-name="Case" field-api-name="Status" label="Status" -place-holder="Pick the Status" onchange={handleChange} ></c-picklist-component>
+    </div>
+</template>

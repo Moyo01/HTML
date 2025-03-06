@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <isExposed>true</isExposed>
+        <masterLabel>Close Case</masterLabel>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+        <property name="placeToBeUsed" type="String" required="tue" label="place to be used"
+              default="Case Close Page" description="This will determine what fields to displace in component" />
+        </targetConfig>
+       
+    </targetConfigs>
+</LightningComponentBundle>

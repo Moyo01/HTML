@@ -1,0 +1,23 @@
+<template>
+    <lightning-card>
+        <div>
+            <lightning-input type="text" name="Name" 
+                    label="Account Name" 
+                    placeholder="type here">
+                 </lightning-input>
+
+            <lightning-input type="text" name="Phone" 
+                    label="Account Phone" 
+                    placeholder="type here"> 
+                </lightning-input>
+        </div>
+        <div class="slds-p-around_medium">
+            <lightning-button variant="brand" 
+                                 label="Next" 
+                                 title="Next" 
+                                 onclick={handleNext}
+                        class="slds-m-left_x-small">
+                            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

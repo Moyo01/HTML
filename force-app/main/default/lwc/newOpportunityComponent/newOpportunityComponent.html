@@ -1,0 +1,22 @@
+<template>
+    <lightning-card>
+        <lightning-layout>
+            <lightning-layout-item>
+                <div class="slds-p-around_large">
+                    <lightning-input type="text" variant="standard" label=" Name" placeholder=" text Here ">
+                    </lightning-input>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item>
+                <lightning-button variant="base" label="Previous" icon-name="utility:chevronleft" icon-position="left"
+                             onclick={handlePrevClick} title="Previous"  class="slds-m-left_x-small"></lightning-button>
+
+                             &nbsp; &nbsp;
+                             <lightning-button variant="brand" label="Next" icon-name="utility:chevronright" icon-position="right"
+                             onclick={handleNextClick}  title="Next" class="slds-m-left_x-small"></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

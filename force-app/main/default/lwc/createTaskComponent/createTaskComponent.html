@@ -1,0 +1,55 @@
+<template>
+    <lightning-spinner variant="brand" size="xx-small" lwc:if={isLoading}></lightning-spinner>
+    <lightning-layout multiple-rows class="slds-p-around_medium">
+        <!--- Subject-->
+        <lightning-layout-item size="12" class="around-small slds-p-around_medium" small-device-size="12" medium-device-size="6" large-device-size="6">
+        <lightning-input value={recordToCreate.Subject} type="text" label="Subject" name="Subject" required  onchange={handleChange}></lightning-input>
+        </lightning-layout-item>
+
+         <!--- Due date-->
+        <lightning-layout-item size="12" class="around-small slds-p-around_medium"  small-device-size="12" medium-device-size="6" large-device-size="6">
+        <lightning-input  value={recordToCreate.ActivityDate}  type="date" label="Due Date" name="ActivityDate" required onchange={handleChange}></lightning-input>
+        </lightning-layout-item> 
+    </lightning-layout>
+
+    <lightning-layout multiple-rows>
+      <!--- Status-->
+     <lightning-layout-item size="12" class="around-small slds-p-around_medium"  small-device-size="12" medium-device-size="6" large-device-size="6"> 
+       <lightning-combobox
+       value={recordToCreate.Status}
+       name="Status"
+       label="Status"
+       placeholder="Select Status"
+       options={statusOptions}
+       onchange={handleChange} ></lightning-combobox>
+       </lightning-layout-item>
+
+       <!--- Priority-->
+       <lightning-layout-item size="12" class="around-small slds-p-around_medium"  small-device-size="12" medium-device-size="6" large-device-size="6">  
+       <lightning-combobox
+       name="Priority"
+       label="Priority"
+        value={recordToCreate.Priority}
+       placeholder="Select Priority"
+       options={priorityOptions}
+       onchange={handleChange} ></lightning-combobox>
+       </lightning-layout-item>
+
+      
+   </lightning-layout>
+      <lightning-layout multiple-rows>
+         <!--- Comment-->
+         <lightning-layout-item size="12" class="around-small slds-p-around_medium"  small-device-size="12" medium-device-size="6" large-device-size="6"> 
+          <lightning-textarea name="Description" label="Comments"   value={recordToCreate.Description} onchange={handleChange} ></lightning-textarea>
+          </lightning-layout-item>
+      </lightning-layout>
+
+      <!--- Button-->
+    <lightning-layout class="slds-align_absolute-center slds-p_around_small" multiple-rows>
+       
+            <lightning-button variant="brand" label="Create ToDo" title="Create ToDo" onclick={handleSubmit} class="slds-m-left_x-small">
+            </lightning-button>
+
+       
+    </lightning-layout>
+</template>

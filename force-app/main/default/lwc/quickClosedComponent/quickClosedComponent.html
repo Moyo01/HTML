@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Close case" icon-name="standard:case">
+
+        <lightning-button variant="brand" 
+        label="Close Case" 
+        title="Close case"
+         onclick={handleClick}
+         if:false={showCloseComponent}
+         >
+    </lightning-button>
+
+
+   
+        <c-revise-edit-component
+            lwc:if={showCloseComponent}
+            record-id={recordId}
+            object-api-name={objectApiName}
+            place-to-be-used={placeToBeUsed}
+            fields-to-edit={fieldsToEdit}
+            onsuccess={handleSuccess}
+            onerror={handleError}
+            oncancel={handleCancel}
+            >
+        </c-revise-edit-component>
+   
+    </lightning-card>
+</template>

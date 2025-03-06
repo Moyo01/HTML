@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Account Lookup">
+
+        <c-son-1  object-api-name={objectApiName} field-api-name={fieldApiName} onsearch={handleSearch}></c-son-1>
+    
+   
+    <template if:true={record}>
+        <template for:each={records} for:item="record">
+            <c-son-2 key={record.Id} record={record} onselect={handleSelect} iconname={iconname}></c-son-2>
+        </template>
+       
+    </template>
+</lightning-card>
+</template>

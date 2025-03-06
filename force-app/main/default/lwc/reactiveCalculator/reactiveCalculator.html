@@ -1,0 +1,81 @@
+<template>
+    <lightning-card title="Enhanced Calculator">
+        <div class="slds-p-around_medium lgc-bg">
+            <p><strong>Click Numbers:</strong></p>
+            <div class="slds-grid slds-wrap">
+                <template for:each={numbers} for:item="num">
+                    <lightning-button 
+                        key={num} 
+                        label={num} 
+                        onclick={handleNumberClick} 
+                        class="slds-m-horizontal_x-small">
+                    </lightning-button>
+                </template>
+
+                <!-- Delete Button -->
+                <lightning-button 
+                    label="Del" 
+                    onclick={handleDelete} 
+                    class="slds-m-horizontal_x-small slds-button_neutral">
+                </lightning-button>
+
+                <!-- Decimal Button -->
+                <lightning-button 
+                    label="." 
+                    onclick={handleDecimal} 
+                    class="slds-m-horizontal_x-small">
+                </lightning-button>
+            </div>
+        </div>
+
+        <div class="slds-p-around_medium lgc-bg">
+            <!-- Sum Button -->
+            <lightning-button 
+                variant="brand" 
+                label="+" 
+                onclick={handleAdd} 
+                class="slds-m-left_x-small">
+            </lightning-button>
+
+            <!-- Subtract Button -->
+            <lightning-button 
+                variant="destructive" 
+                label="-" 
+                onclick={handleSubtract} 
+                class="slds-m-left_x-small">
+            </lightning-button>
+
+            <!-- Equal Button -->
+            <lightning-button 
+                variant="neutral" 
+                label="=" 
+                onclick={handleEqual} 
+                class="slds-m-left_x-small">
+            </lightning-button>
+        </div>
+
+        <!-- Display Field for Clicked Numbers and Operations -->
+        <div class="slds-p-around_medium slds-m-right_xx-large">
+            <lightning-input 
+                type="text" 
+                label="Clicked Numbers & Operations" 
+                value={displayField} 
+                maxlength="16" 
+                class="calculator-input" 
+                disabled>
+            </lightning-input>
+        </div>
+
+        <!-- Display Field for Results -->
+        <div class="slds-p-around_medium">
+            <lightning-input 
+                type="text" 
+                label="Result" 
+                value={result} 
+                maxlength="16" 
+                class="calculator-input" 
+                disabled>
+            </lightning-input>
+        </div>
+    </lightning-card>
+</template>
