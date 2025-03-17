@@ -1,0 +1,14 @@
+<template>
+    <lightning-card>
+
+        <c-datatable-child
+        key-field="Id"
+            data={records}
+            onselect={handleSelect}
+            onlinkclick={handleLinkClick}
+            columns={columnList}  
+        >
+        </c-datatable-child>
+
+    </lightning-card>
+</template>    

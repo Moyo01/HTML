@@ -1,0 +1,14 @@
+.custom-small-icon{
+    width: 10px !important; 
+    height: 10px !important; 
+}
+
+.search-container{
+    cursor: pointer;
+}
+
+.serach-container:hover{
+    padding: 4px;
+    background-color: light gray;
+    border-radius: 5px;
+}

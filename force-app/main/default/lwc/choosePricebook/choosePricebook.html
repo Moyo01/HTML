@@ -1,0 +1,47 @@
+<template>
+    <div class="custom-modal">
+
+        <lightning-spinner if:true={showSpinner} variant="brand" size="medium" class="slds-is-relative"></lightning-spinner>
+
+        
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <span class="slds-modal__close">
+                        <lightning-icon icon-name="utility:close" variant="inverse" alternative-text="close" onclick={handleCancel}></lightning-icon>
+                    </span>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Choose PriceBook</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p if:true={errorMessage} style="color: red" >
+                        errorMessage: {errorMessage}
+                    </p>
+                    <p>Select a pricebook to associate with opportunity. You can add products only frpm the pricebook you associate with this opportunity.
+                        Changing the pricebook deletes all products from the opportunity.
+                    </p>
+
+                    <p>
+                        <c-search-child-component 
+
+                        obj-name="PriceBook2" 
+                        label-name="Price Book"
+                        parent-a-p-i-name="Product2Id"
+                        icon-name="standard:product"
+                        placeholder="Search"
+                        fields={fields}
+                        display-fields={displayFields}
+                        onlookup={handleLookup}
+                        >
+              
+                        </c-search-child-component>
+                    </p>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" title="Cancel" class="slds-m-right_small" onclick={handleCancel}></lightning-button>
+                    <lightning-button variant="brand" label="Save" title="Save" onclick={handleSave}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+</template>
