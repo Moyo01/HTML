@@ -98,4 +98,7 @@ export default class SearchProducts extends lightningModal {
     console.log('Link clicked', event.detail);
     let details = event.detail;
     let clonedDetails = JSON.parse(JSON.stringify(details));
-    c
+    clonedDetails.index = this.index;
+    this.close(JSON.stringify(clonedDetails));
+}
+}
