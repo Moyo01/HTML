@@ -35,3 +35,4 @@ export default class DatatableChild extends LightningDatatable {
 }
 
 
+}
