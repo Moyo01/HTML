@@ -166,14 +166,21 @@
             <template for:each={records} for:item="record" for:index="index" if:true={records}>
 
                 <tr key={record.Id} aria-selected="false" class="slds-hint-parent">
-                  
                     <th class="slds-cell_action-mode" scope="row">
-
-                     <lightning-input  if:false={record.Id} type="search" value={lookupValue} data-index={index} onchange={handleLookupChange}></lightning-input>
+                     <div if:false={record.SELECTED_Product_Name}>
+                        <lightning-input  if:false={record.Id} type="search" value={lookupValue} data-index={index} onchange={handleLookupChange}></lightning-input>
                      <p if:true={record.lookupValue} class="search-container">
                         <span onclick={handleModalClick} data-index={index} data-value={record.lookupValue} if:false={record.Id}> 
                            <lightning-icon icon-name="utility:search" size="xx-small" class="custom-small-icon" ></lightning-icon> Show All Result For {record.lookupValue}
                          </span>
+                     </p>
+                     </div>
+                    
+
+                     <p if:true={record.SELECTED_Product_Name}>
+                        <lightning-pill label={record.SELECTED_Product_Name} data-index={index} onremove={handleRemoveOnly}>
+                           <lightning-icon icon-name="standard:product" alternative-text="Product"></lightning-icon>
+                       </lightning-pill>
                      </p>
                        <!-- <c-search-child-component 
                         if:false={record.Id}

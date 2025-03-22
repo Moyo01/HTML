@@ -1,6 +1,7 @@
 import LightningDatatable from 'lightning/datatable';
 import picklistTemplate from './templates/picklist.html';
 import imagePicklist from './templates/image.html';
+import linkTemplate from './templates/link.html';
 
 export default class DatatableChild extends LightningDatatable {
 
@@ -13,6 +14,11 @@ export default class DatatableChild extends LightningDatatable {
     image: {
         template: imagePicklist,
         typeAttributes: [ 'height', 'width', 'alt'  ]
+    },
+   
+    link: {
+        template: linkTemplate,
+        typeAttributes: ['recordId', 'recordName']
     },
  };
 
@@ -27,4 +33,5 @@ export default class DatatableChild extends LightningDatatable {
  });
  this.dispatchEvent(value);
 }
-}
+
+

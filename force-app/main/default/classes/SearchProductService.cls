@@ -1,7 +1,7 @@
 public with sharing class SearchProductService {
     
     @AuraEnabled
-    public static List<sObject> searchProducts( string searchKey){
+    public static List<sObject> searchProducts( string searchKey, string priceBook2Id){
         string likeparam = '%'+ searchKey + '%';
         try {
            return [SELECT IsActive, Id, Name, Pricebook2Id, Product2Id, UnitPrice, ProductCode,Product2.IsActive,

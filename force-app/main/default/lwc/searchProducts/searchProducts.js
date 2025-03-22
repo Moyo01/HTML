@@ -1,81 +1,80 @@
-import { LightningElement, track, api } from 'lwc';
+import { track, api } from 'lwc';
 import lightningModal from 'lightning/modal';
+
 import searchProducts from '@salesforce/apex/SearchProductService.searchProducts';
 
 const columns = [
     {
         label: 'Name',
-        fieldName: 'recordUrl',
-        type: 'url',
-        typeAttributes: {
-            label: { fieldName: 'Name' },
-            target: '_blank'
+        fieldName: 'Name',
+        type: 'link',
+        typeAttributes:  {
+            recordId: {
+                fieldName: 'Id'
+            },
+            recordName: {
+                fieldName: 'Name'
+            }
         }
     },
     { label: 'Product Code', fieldName: 'ProductCode' },
-    { label: 'Family', fieldName: 'Family' }
+    { label: 'Family', fieldName: 'Family' },
+    { label: 'Description', fieldName: 'Description' },
+    { label: 'Active ?', fieldName: 'IsActive' }
 ];
 
-export default class SearchProducts extends LightningElement {
-    @track records = [];
+
+export default class SearchProducts extends lightningModal {
+   
+    @track records ;
     @track error;
     @track columnList = columns;
+
     isSpinner = false;
     showModal = false;  
-    searchKeyword = '';
-    @api PriceBook2Id;
+    @api priceBook2Id;
+    @api content;
+    @api index;
 
-    async handleClick() {
-        console.log("Modal Opened with PriceBook:", this.priceBook2Id, "Index:", this.index);
-        this.showModal = true;
 
-        const result = await searchProducts.open({
-            size: 'large',
-            description: 'Search Product Modal',
-            label: "Search Product",
-            priceBook2Id: this.priceBook2Id,
-            index: this.index,
-            content: 'Simple Content from Parent'
-        });
-
-        console.log('Modal Result:', result);
-        this.records = []; 
-    }
-
-    closeModal() {
-        this.close('User closed modal');
-    }
-
-    
     handleCancel() {
-        this.showModal = false;
         this.close('cancel');
     }
 
+
+    handleClick() {
+        this.close('okay');
+    }
+
     
-    handleSearchChange(event) {
-        this.searchKeyword = event.target.value;
-        this.handleSearch(); // Fetch products immediately
+    handleChange(event) {
+        event.preventDefault();
+        let searchKeyword = event.target.value;
+        this.handleClick(searchKeyword); // Fetch products immediately
     }
 
    
-    handleSearch() {
-        if (!this.searchKeyword.trim()) {
-            this.records = [];
-            return;
-        }
-
+    handleClick(searchKeyword){
         this.isSpinner = true;
-        const baseUrl = window.location.origin;
-
-        searchProducts({ searchKey: this.searchKeyword })
+      //  const baseUrl = window.location.origin;
+    
+        searchProducts({ 
+            searchKey: searchKeyword, 
+            priceBook2Id: this.priceBook2Id
+        })
             .then((result) => {
-                this.records = result.length > 0
-                    ? result.map(record => ({
-                        ...record,
-                        recordUrl: `${baseUrl}/lightning/r/Product2/${record.Id}/view`
-                    }))
-                    : [];
+                this.records = result;
+                this.records = result.map(record => {
+                        return {
+                            ...record,
+                            Family: record.Family ? record.Family.Name : '',
+                            IsActive: record.IsActive ? record.IsActive : '',
+                            Description: record.Description ? record.Description : '',
+                            ProductCode: record.ProductCode ? record.ProductCode : '',
+                            Name: record.Name ? record.Name : '',
+                         //   recordUrl: `${baseUrl}/lightning/r/Product2/${record.Id}/view`
+                        };
+                    });
             })
             .catch((error) => {
                 this.error = error;
@@ -87,24 +86,16 @@ export default class SearchProducts extends LightningElement {
             });
     }
 
-   
-
-    
-    handleRowAction(event) {
-        const selectedRows = event.detail.selectedRows;
-        if (selectedRows.length > 0) {
-            const selectedProduct = {
-                productId: selectedRows[0].Id,
-                productName: selectedRows[0].Name
-            };
-
-            // Fire event to send product selection to parent
-            const selectedEvent = new CustomEvent('productselected', {
-                detail: selectedProduct
-            });
-            this.dispatchEvent(selectedEvent);
-
-            this.showModal = false; // Close modal after selection
+    connectedCallback() {
+        if(this.content){
+            this.handleClick(this.content);
         }
     }
-}
+    
+
+    handleLinkClick(event) {
+    event.preventDefault();
+    console.log('Link clicked', event.detail);
+    let details = event.detail;
+    let clonedDetails = JSON.parse(JSON.stringify(details));
+    c
